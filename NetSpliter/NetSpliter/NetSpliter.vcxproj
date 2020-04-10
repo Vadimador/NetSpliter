@@ -138,7 +138,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Commande.cpp" />
+    <ClCompile Include="IP.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Split.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Commande.hpp" />
+    <ClInclude Include="IP.hpp" />
+    <ClInclude Include="Split.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
