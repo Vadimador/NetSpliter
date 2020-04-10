@@ -3,6 +3,11 @@
 
  class Commande
 {
-	virtual void execute(IP ip, int nbSousReseau) = 0;
+public :
+	 /// ip : l'adresse du réseau
+	 /// argc : le nombre d'arguments
+	 /// argv : les arguments
+	 ////
+	virtual void execute(IP* ip, int argc, char** argv) = 0;
 };
 

@@ -1,16 +1,18 @@
 #include "IP.hpp"
 
+using namespace std;
 IP::IP(int adresse_ip[4])
 {
-	this.adresse_ip = adresse_ip;
+	adresse_ip = adresse_ip;
 }
 
 IP* IP::isAdresse(string adresse)
 {
-
+	return nullptr;
 }
 
-int[] IP::setMask()
+
+int* IP::setMask()
 {
 	bool class_adresse_ip[3];
 
@@ -19,18 +21,22 @@ int[] IP::setMask()
 		class_adresse_ip[i] = adresse_ip_binaire()[0][i];
 	}
 
-	if (class_adresse_ip[0] == 0)
+	/*if (class_adresse_ip[0] == 0)
 		return { 255,0,0,0 };
 	else if (class_adresse_ip[0] == 0)
 		return { 255,255,0,0 };
 	else (class_adresse_ip[0] == 0)
-		return { 255,255,255,0 };
-
+		return { 255,255,255,0 };*/
+	return nullptr;
 }
 
-bool[][] IP::adresse_ip_binaire()
+bool** IP::adresse_ip_binaire()
 {
-	bool adresse_ip_binaire[4][8];
+	bool **adresse_ip_binaire = new bool*[4];
+	for (size_t i = 0; i < sizeof(adresse_ip_binaire); ++i)
+	{
+		adresse_ip_binaire[i] = new bool[8];
+	}
 
 	for (signed int i = 0; i < 4; i++)
 	{
@@ -48,9 +54,4 @@ bool[][] IP::adresse_ip_binaire()
 
 void IP::nbBitSousAdresse()
 {
-}
-
-int main()
-{
-
 }

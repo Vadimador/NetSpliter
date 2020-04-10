@@ -3,6 +3,16 @@
 
 class Split : public Commande
 {
-	 void execute(IP ip, int nbSousReseau); // la fonction virtuelle
+private :
+
+public :
+
+	 //--Getteurs
+
+	 //--Setteurs
+
+	 //--Méthodes
+	void execute(IP* ip, int argc, char** argv); // la fonction virtuelle
+
 };
 

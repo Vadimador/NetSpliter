@@ -1,8 +1,40 @@
 #include <iostream>
+#include "Split.hpp"
 using namespace std;
 
-int main() {
-	cout << "omg ca marche ahah !" << "\n";
-	system("pause>nul");
-	return 0;
-}
+int main(int argc, char** argv) {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	int erreur = 0; // 0 si il n'y à pas d'erreur, -1 si il y à eu une erreur
+	system("title NetSpliter");
+	if (argc >= 4) { // forme de commande "NetSpliter @adresse split <nombre de réseau>"
+
+		IP* adresse = nullptr; //IP.isAdresse(argv[1]); // IP*i = new IP(fsdqfdsqf) // return i;
+		Commande *commande = nullptr;
+		if ((string)argv[2] == "split") {
+
+			commande = new Split(); // on initialise une commande split
+			char** args = new char*[argc - 3]; // on fait un tableau de char permettant de stocker les arguments de split
+			for (size_t i = argc - 3; i < argc; ++i)
+			{
+				args[i] = argv[i];
+			}
+			commande->execute(adresse,argc, argv);
+		}
+		else {
+			cerr << "la commande \"" << argv[2] << "\" n'existe pas." << "\n";
+			erreur = -1;
+		}
+		 
+		delete adresse;
+		delete commande;
+	}
+	else {
+		cerr << "nombre d'argument incorrect" << "\n";
+		erreur = -1;
+	}
+
+	//cout << argv[0];
+	//system("pause>nul");
+	
+	return erreur;
+}// 10.10.0.0 --> 255.0.0.0
