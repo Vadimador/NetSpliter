@@ -1,6 +1,4 @@
 #include <iostream>
-#include "Split.hpp"
-#include "IP.hpp"
 #include "ListeCommandes.hpp"
 using namespace std;
 
@@ -13,9 +11,10 @@ int main(int argc, char** argv) {
 		IP* adresse = IP::isAdresse((string)argv[1]); //IP.isAdresse(argv[1]); // IP*i = new IP(fsdqfdsqf) // return i;
 		Commande *commande = nullptr;
 		if (adresse != nullptr) {
-			if ((string)argv[2] == "split") {
+			commande = ListeCommandes::get(argv[2]); // on initialise une commande split
+			if (commande != nullptr) {
 
-				commande = new Split(); // on initialise une commande split
+				
 				char** args = new char* [argc - 3]; // on fait un tableau de char permettant de stocker les arguments de split
 
 				for (size_t i = 3, j = 0; i < argc; ++i, ++j)
