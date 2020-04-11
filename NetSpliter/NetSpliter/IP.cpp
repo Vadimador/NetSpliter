@@ -13,6 +13,11 @@ IP* IP::isAdresse(string adresse)
 	{
 		size_t coor = adresse.find('.');
 
+		if (coor > 12 || coor < 0)
+		{
+			return nullptr;
+		}
+
 		try
 		{
 			int verif = stoi(adresse.substr(0,coor));
@@ -31,7 +36,7 @@ IP* IP::isAdresse(string adresse)
 		}
 		
 	}
-
+	
 	IP* adresse_bonne = new IP(stock);
 
 	return adresse_bonne;
