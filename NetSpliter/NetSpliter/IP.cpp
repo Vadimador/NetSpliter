@@ -8,7 +8,6 @@ IP::IP(int adresse_ip[NB_OCTET_IPVP4])
 
 IP* IP::isAdresse(string adresse)
 {
-	std::cout << " adresse recu :" << adresse << "\n";
 	int stock[4];
 	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
 	{
@@ -28,13 +27,9 @@ IP* IP::isAdresse(string adresse)
 		}
 		catch (const std::exception&)
 		{
-			
+			return nullptr;
 		}
 		
-	}
-	if (adresse.length() >= 1)
-	{
-		return nullptr;
 	}
 
 	IP* adresse_bonne = new IP(stock);
