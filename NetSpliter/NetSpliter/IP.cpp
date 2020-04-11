@@ -1,10 +1,18 @@
 #include "IP.hpp"
 
 using namespace std;
-IP::IP(int *adresse_ip)
+IP::IP(int tab[NB_OCTET_IPVP4])
 {
-	this->adresse_ip = adresse_ip;
-	
+	this->adresse_ip[0] = tab[0];
+	this->adresse_ip[1] = tab[1];
+	this->adresse_ip[2] = tab[2];
+	this->adresse_ip[3] = tab[3];
+
+	this->mask = new bool* [NB_OCTET_IPVP4];
+	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
+	{
+		this->mask[i] = new bool[NB_BYTE_UN_CHIFFRE];
+	}
 }
 
 IP* IP::isAdresse(string adresse)
@@ -103,6 +111,16 @@ int* IP::toDecimal(bool adresse[NB_OCTET_IPVP4][NB_BYTE_UN_CHIFFRE])
 
 void IP::nbBitSousAdresse()
 {
+}
+
+IP::~IP()
+{
+
+	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
+	{
+		delete[] this->mask[i];
+	}
+	delete[] this->mask;
 }
 
 

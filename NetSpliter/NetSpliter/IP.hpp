@@ -9,8 +9,8 @@ private:
 	static const int NB_OCTET_IPVP4 = 4;
 	static const int NB_BYTE_UN_CHIFFRE = 8;
 
-	int* adresse_ip = new int[NB_OCTET_IPVP4];
-	bool** mask = new bool*[NB_OCTET_IPVP4];
+	int adresse_ip[NB_OCTET_IPVP4] = {0,0,0,0};
+	bool** mask;
 	
 public:
 	//--Getteur
@@ -19,7 +19,7 @@ public:
 	int* setMask();
 
 	//--Methode
-	IP(int *adresse_ip);
+	IP(int adresse_ip[NB_OCTET_IPVP4]);
 
 	static IP* isAdresse(std::string adresse);
 
@@ -28,6 +28,8 @@ public:
 	int* toDecimal(bool adresse[NB_OCTET_IPVP4][NB_BYTE_UN_CHIFFRE]);
 	
 	void nbBitSousAdresse();
+
+	~IP();
 
 };
 
