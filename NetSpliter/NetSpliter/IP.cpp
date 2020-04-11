@@ -1,9 +1,10 @@
 #include "IP.hpp"
 
 using namespace std;
-IP::IP(int adresse_ip[NB_OCTET_IPVP4])
+IP::IP(int *adresse_ip)
 {
-	adresse_ip = adresse_ip;
+	this->adresse_ip = adresse_ip;
+	
 }
 
 IP* IP::isAdresse(string adresse)
@@ -13,7 +14,7 @@ IP* IP::isAdresse(string adresse)
 	{
 		size_t coor = adresse.find('.');
 
-		if (coor > 12 || coor < 0)
+		 if (((i >= 3) && !(coor > 12 || coor < 0)) || (!(i >= 3) && (coor > 12 || coor < 0)))
 		{
 			return nullptr;
 		}
@@ -47,18 +48,18 @@ int* IP::setMask()
 {
 	bool class_adresse_ip[3];
 
-	for (size_t i = 0; i < sizeof class_adresse_ip; i++)
+	int* maskAdresse = new int[4];
+
+	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
 	{
-		class_adresse_ip[i] = toBinaire(*adresse_ip)[0][i];
+		if (!toBinaire(adresse_ip)[0][i]) 
+		{
+			maskAdresse[i] = 255;
+			return maskAdresse;
+		}
+		maskAdresse[i] = 255;
 	}
 
-	/*if (class_adresse_ip[0] == 0)
-		return { 255,0,0,0 };
-	else if (class_adresse_ip[0] == 0)
-		return { 255,255,0,0 };
-	else (class_adresse_ip[0] == 0)
-		return { 255,255,255,0 };*/
-	return nullptr;
 }
 
 bool** IP::toBinaire(int adresse[NB_OCTET_IPVP4])
@@ -92,7 +93,7 @@ int* IP::toDecimal(bool adresse[NB_OCTET_IPVP4][NB_BYTE_UN_CHIFFRE])
 		for (size_t j = 0; j < NB_BYTE_UN_CHIFFRE; j++)
 		{
 			if (adresse[i][j]) {
-				adresse_ip_binaire[i] += adresse[i][j] * pow(2, i);
+				adresse_ip_binaire[i] += (int) pow(2, j);
 			}
 		}
 	}
@@ -102,5 +103,11 @@ int* IP::toDecimal(bool adresse[NB_OCTET_IPVP4][NB_BYTE_UN_CHIFFRE])
 
 void IP::nbBitSousAdresse()
 {
+}
+
+IP::~IP()
+{
+	delete this->adresse_ip;
+	delete this->mask;
 }
 
