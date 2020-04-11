@@ -14,11 +14,13 @@ int main(int argc, char** argv) {
 
 			commande = new Split(); // on initialise une commande split
 			char** args = new char*[argc - 3]; // on fait un tableau de char permettant de stocker les arguments de split
-			for (size_t i = argc - 3; i < argc; ++i)
+			
+			for (size_t i = 3, j = 0; i < argc; ++i, ++j)
 			{
-				args[i] = argv[i];
+				args[j] = argv[i];
 			}
-			commande->execute(adresse,argc, argv);
+			commande->execute(adresse, argc - 3, args);
+			delete[] args;
 		}
 		else {
 			cerr << "la commande \"" << argv[2] << "\" n'existe pas." << "\n";
@@ -35,6 +37,5 @@ int main(int argc, char** argv) {
 
 	//cout << argv[0];
 	//system("pause>nul");
-	
 	return erreur;
-}// 10.10.0.0 --> 255.0.0.0
+}
