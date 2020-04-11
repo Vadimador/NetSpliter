@@ -142,12 +142,14 @@
     <ClCompile Include="IP.cpp" />
     <ClCompile Include="ListeCommandes.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Octet.cpp" />
     <ClCompile Include="Split.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commande.hpp" />
     <ClInclude Include="IP.hpp" />
     <ClInclude Include="ListeCommandes.hpp" />
+    <ClInclude Include="Octet.hpp" />
     <ClInclude Include="Split.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
