@@ -6,9 +6,10 @@ IP::IP(int adresse_ip[NB_OCTET_IPVP4])
 	adresse_ip = adresse_ip;
 }
 
-IP* IP::isAdresse(string adresse) 
+IP* IP::isAdresse(string adresse)
 {
-	int* stock = new int[4];
+	std::cout << " adresse recu :" << adresse << "\n";
+	int stock[4];
 	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
 	{
 		size_t coor = adresse.find('.');
@@ -31,7 +32,7 @@ IP* IP::isAdresse(string adresse)
 		}
 		
 	}
-	if (adresse.length >= 1)
+	if (adresse.length() >= 1)
 	{
 		return nullptr;
 	}
