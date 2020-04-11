@@ -12,7 +12,8 @@ public :
 	 //--Setteurs
 
 	 //--Méthodes
-	void execute(IP* ip, int argc, char** argv); // la fonction virtuelle
+	void execute(IP* ip, unsigned int argc, char** argv); // la fonction virtuelle
+	void help(); // la fonction virtuelle help
 
 };
 
