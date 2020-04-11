@@ -1,11 +1,16 @@
 #pragma once
 #include <iostream>
+#include <string>
+#include <math.h>
 
 class IP
 {
 private:
-	int adresse_ip[4] = { 10, 10, 10, 10 };
-	int mask[4];
+	static const int NB_OCTET_IPVP4 = 4;
+	static const int NB_BYTE_UN_CHIFFRE = 8;
+
+	int* adresse_ip[NB_OCTET_IPVP4];
+	bool** mask[NB_OCTET_IPVP4];
 	
 public:
 	//--Getteur
@@ -14,11 +19,13 @@ public:
 	int* setMask();
 
 	//--Methode
-	IP(int adresse_ip[4]);
+	IP(int adresse_ip[NB_OCTET_IPVP4]);
 
-	IP* isAdresse(std::string adresse);
+	static IP* isAdresse(std::string adresse);
 
-	bool** adresse_ip_binaire();
+	bool** toBinaire(int adresse[NB_OCTET_IPVP4]);
+
+	int* toDecimal(bool adresse[NB_OCTET_IPVP4][NB_BYTE_UN_CHIFFRE]);
 	
 	void nbBitSousAdresse();
 };
