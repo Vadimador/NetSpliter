@@ -105,9 +105,4 @@ void IP::nbBitSousAdresse()
 {
 }
 
-IP::~IP()
-{
-	delete this->adresse_ip;
-	delete this->mask;
-}
 
