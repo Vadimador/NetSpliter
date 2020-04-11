@@ -4,20 +4,6 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-
-	//-------------------------------------------Zone de tests
-	Octet o = Octet(1);
-	cout << o.toString() << "\n";
-	cout << o.toInt() << "\n";
-	for (size_t i = 0; i < 8; i++)
-	{
-		cout << o.getInverseBit(i);
-	}
-	cout << "\n";
-	cout << o.getBit(0);
-	system("pause>nul");
-	return 0;
-	//------------------------------------------- Fin de zone de tests
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	int erreur = 0; // 0 si il n'y à pas d'erreur, -1 si il y à eu une erreur
 	system("title NetSpliter");
