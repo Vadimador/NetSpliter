@@ -5,6 +5,18 @@ Octet::Octet(char octet)
 {
 }
 
+Octet::Octet(std::string octet)
+{
+    this->octet = 0;
+    for (size_t i = 0; i < 8; i++)
+    {
+        if (octet.at(i) == '1')
+            this->setBit((7 - i), 1);
+        else
+            this->setBit((7 - i), 0);
+    }
+}
+
 Octet::Octet()
 {
     this->octet = 0;
@@ -24,6 +36,11 @@ bool Octet::getInverseBit(int i)
 void Octet::setOctet(char octet)
 {
     this->octet = octet;
+}
+
+void Octet::setOctetWithString(std::string octet)
+{
+    *this = Octet(octet);
 }
 
 void Octet::setBit(int index, bool valeur)

@@ -9,6 +9,11 @@ private:
 
 public :
 	Octet(char octet);
+
+	/// créer un octet avec le string fourni, seul les '1' sont pris en compte
+	/////////////////////////
+	Octet(std::string octet);
+
 	Octet();
 
 	//--méthodes
@@ -26,6 +31,13 @@ public :
 	/// change l'octet
 	//////////////////////////
 	void setOctet(char octet);
+
+	/// converti l'octet en string donnée en Octet
+	/// Attention, aucune erreur est envoyée, seul les '1' sont pris en compte
+	/// [example : setOctetWithString("10000000") créer un octet de 10000000
+	/// Mais setOctetWithString("15uca1a1") créer un octet de 10000101 car seul les 1 sont comptés]
+	///////////////////////////////////////////
+	void setOctetWithString(std::string octet);
 
 	/// set la valeur au bit designé par l'index
 	/// index : l'index du bit (0 = bit le plus faible, 7 = bit le plus fort)
