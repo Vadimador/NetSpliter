@@ -5,6 +5,11 @@ Octet::Octet(char octet)
 {
 }
 
+Octet::Octet()
+{
+    this->octet = 0;
+}
+
 bool Octet::getBit(int i)
 {
     return ((this->octet >> i) & 1);

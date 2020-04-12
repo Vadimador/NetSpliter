@@ -9,6 +9,7 @@ private:
 
 public :
 	Octet(char octet);
+	Octet();
 
 	//--méthodes
 
