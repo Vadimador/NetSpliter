@@ -26,6 +26,17 @@ void Octet::setOctet(char octet)
     this->octet = octet;
 }
 
+void Octet::setBit(int index, bool valeur)
+{
+    if (valeur == 1) {
+        this->octet = this->octet | (1 << index);
+    }
+    else
+    {
+        this->octet = this->octet & ~(1 << index);
+    }
+}
+
 void Octet::setMasqueOR(int mask)
 {
     this->octet = (this->octet | mask);
