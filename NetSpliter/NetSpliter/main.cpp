@@ -3,7 +3,10 @@
 #include "Octet.hpp"
 using namespace std;
 
+void help();
+
 int main(int argc, char** argv) {
+	//system("mode con codepage select=1252");
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	int erreur = 0; // 0 si il n'y à pas d'erreur, -1 si il y à eu une erreur
 	system("title NetSpliter");
@@ -27,11 +30,13 @@ int main(int argc, char** argv) {
 			}
 			else {
 				cerr << "la commande \"" << argv[2] << "\" n'existe pas." << "\n";
+				help();
 				erreur = -1;
 			}
 		}
 		else {
 			cerr << "L'adresse n'est pas valide." << "\n";
+			help();
 			erreur = -1;
 		}
 		
@@ -41,10 +46,21 @@ int main(int argc, char** argv) {
 	}
 	else {
 		cerr << "nombre d'argument incorrect" << "\n";
+		help();
 		erreur = -1;
 	}
 
 	//cout << argv[0];
 	system("pause>nul");
 	return erreur;
+}
+
+void help() {
+	// è = 212  é = 202
+	std::string s = "";
+	s += "Utilisation de NetSpliter : \n";
+	s += " - NetSpliter.exe <@adresse du r\202seau> <commande> <param1> <param2> ... \n";
+	s += " - ou les \"param\"(s) d\202pendent de la \"commande\" \n";
+	s += "commande(s) existante(s) : \"split\"";
+	cout << "\n" << s << "\n";
 }
