@@ -61,6 +61,6 @@ void help() {
 	s += "Utilisation de NetSpliter : \n";
 	s += " - NetSpliter.exe <@adresse du r\202seau> <commande> <param1> <param2> ... \n";
 	s += " - ou les \"param\"(s) d\202pendent de la \"commande\" \n";
-	s += "commande(s) existante(s) : \"split\"";
+	s += "commande(s) existante(s) : \"split\", \"see\"";
 	cout << "\n" << s << "\n";
 }

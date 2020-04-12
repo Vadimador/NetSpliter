@@ -143,6 +143,7 @@
     <ClCompile Include="ListeCommandes.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Octet.cpp" />
+    <ClCompile Include="See.cpp" />
     <ClCompile Include="Split.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="IP.hpp" />
     <ClInclude Include="ListeCommandes.hpp" />
     <ClInclude Include="Octet.hpp" />
+    <ClInclude Include="See.hpp" />
     <ClInclude Include="Split.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
