@@ -1,17 +1,12 @@
 #include "IP.hpp"
+#include "Octet.hpp"
 
 using namespace std;
 IP::IP(int tab[NB_OCTET_IPVP4])
 {
-	this->adresse_ip[0] = tab[0];
-	this->adresse_ip[1] = tab[1];
-	this->adresse_ip[2] = tab[2];
-	this->adresse_ip[3] = tab[3];
-
-	this->mask = new bool* [NB_OCTET_IPVP4];
 	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
 	{
-		this->mask[i] = new bool[NB_BYTE_UN_CHIFFRE];
+		this->adresse_ip[i].setOctet(tab[i]);
 	}
 }
 
@@ -51,68 +46,29 @@ IP* IP::isAdresse(string adresse)
 	return adresse_bonne;
 }
 
-
-int* IP::setMask()
+std::string IP::getOctet(int pos)
 {
-	bool class_adresse_ip[3];
+	return adresse_ip[pos].toString();
+}
 
-	int* maskAdresse = new int[4];
+
+std::string IP::toString()
+{
+	string res = "";
 
 	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
 	{
-		if (!toBinaire(adresse_ip)[0][i]) 
+		res += adresse_ip[i].toInt();
+		if (i < 3)
 		{
-			maskAdresse[i] = 255;
-			return maskAdresse;
-		}
-		maskAdresse[i] = 255;
-	}
-
-}
-
-bool** IP::toBinaire(int adresse[NB_OCTET_IPVP4])
-{
-	bool **adresse_ip_binaire = new bool*[NB_OCTET_IPVP4];
-	for (size_t i = 0; i < NB_OCTET_IPVP4; ++i)
-	{
-		adresse_ip_binaire[i] = new bool[NB_BYTE_UN_CHIFFRE];
-	}
-
-	for (signed int i = 0; i < NB_OCTET_IPVP4; i++)
-	{
-		int nb_adresse_ip = adresse[i];
-
-		for (size_t j = NB_BYTE_UN_CHIFFRE - 1; j >= 0; j--)
-		{
-			adresse_ip_binaire[i][j] = nb_adresse_ip % 2;
-			nb_adresse_ip = nb_adresse_ip / 2;
+			res += '.';
 		}
 	}
 
-	return adresse_ip_binaire;
+	return res;
 }
 
-int* IP::toDecimal(bool adresse[NB_OCTET_IPVP4][NB_BYTE_UN_CHIFFRE])
-{
-	int *adresse_ip_binaire = new int[NB_OCTET_IPVP4];
-	
-	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
-	{
-		for (size_t j = 0; j < NB_BYTE_UN_CHIFFRE; j++)
-		{
-			if (adresse[i][j]) {
-				adresse_ip_binaire[i] += (int) pow(2, j);
-			}
-		}
-	}
-
-	return adresse_ip_binaire;
-}
-
-void IP::nbBitSousAdresse()
-{
-}
-
+/*
 IP::~IP()
 {
 
@@ -122,5 +78,5 @@ IP::~IP()
 	}
 	delete[] this->mask;
 }
-
+*/
 
