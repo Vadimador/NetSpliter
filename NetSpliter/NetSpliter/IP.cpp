@@ -46,9 +46,29 @@ IP* IP::isAdresse(string adresse)
 	return adresse_bonne;
 }
 
-std::string IP::getOctet(int pos)
+int IP::getBitReseau()
 {
-	return adresse_ip[pos].toString();
+	int nb_bit = 0;
+	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
+	{
+		for (size_t j = 0; j < 8; j++)
+		{
+			if (adresse_ip[i].toString()[j] == '1')
+			{
+				nb_bit++;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+	return nb_bit;
+}
+
+Octet* IP::getOctet(int pos)
+{
+	return &adresse_ip[pos];
 }
 
 
@@ -58,7 +78,7 @@ std::string IP::toString()
 
 	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
 	{
-		res += adresse_ip[i].toInt();
+		res += std::to_string(adresse_ip[i].toInt());
 		if (i < 3)
 		{
 			res += '.';

@@ -2,6 +2,7 @@
 #include "Commande.hpp"
 #include <iostream>
 #include <math.h>
+#include "IP.hpp"
 
 class Split : public Commande
 {
@@ -16,6 +17,6 @@ public :
 	 //--Méthodes
 	int execute(IP* ip, unsigned int argc, char** argv); // la fonction virtuelle
 	void help(); // la fonction virtuelle help
-	int get_nb_bit_mask(std::string premiere_nb_adresse);
+	IP* getMask(std::string premiere_nb_adresse);
 };
 
