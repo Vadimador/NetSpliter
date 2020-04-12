@@ -5,7 +5,7 @@ class Octet
 {
 
 private:
-	char octet;
+	unsigned char octet;
 
 public :
 	Octet(char octet);
