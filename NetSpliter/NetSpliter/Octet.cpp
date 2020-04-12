@@ -26,6 +26,15 @@ void Octet::setOctet(char octet)
     this->octet = octet;
 }
 
+void Octet::setBit(int index, bool valeur)
+{
+}
+
+void Octet::setMasqueOR(int mask)
+{
+    this->octet = (this->octet | mask);
+}
+
 std::string Octet::toString()
 {
     std::string s = "";
