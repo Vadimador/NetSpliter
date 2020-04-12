@@ -1,7 +1,8 @@
 #include "Commande.hpp"
 #include <iostream>
 
-void Commande::execute(IP* ip, unsigned int argc, char** argv)
+int Commande::execute(IP* ip, unsigned int argc, char** argv)
 {
 	std::cerr << " foncition pas programme" << "\n";
+	return -1;
 }

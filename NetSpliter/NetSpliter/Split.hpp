@@ -14,7 +14,7 @@ public :
 	 //--Setteurs
 
 	 //--Méthodes
-	void execute(IP* ip, unsigned int argc, char** argv); // la fonction virtuelle
+	int execute(IP* ip, unsigned int argc, char** argv); // la fonction virtuelle
 	void help(); // la fonction virtuelle help
 	int get_nb_bit_mask(std::string premiere_nb_adresse);
 };

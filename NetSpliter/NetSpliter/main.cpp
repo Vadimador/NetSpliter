@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 				{
 					args[j] = argv[i];
 				}
-				commande->execute(adresse, argc - 3, args);
+				erreur = commande->execute(adresse, argc - 3, args);
 				delete[] args;
 			}
 			else {

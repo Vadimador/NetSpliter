@@ -8,7 +8,7 @@ public :
 	 /// argc : le nombre d'arguments
 	 /// argv : les arguments
 	 ////
-	virtual void execute(IP* ip, unsigned int argc, char** argv) = 0;
+	virtual int execute(IP* ip, unsigned int argc, char** argv) = 0;
 
 	/// Cette méthode sert à décrire le fonctionnement de la commande en question.
 	////
