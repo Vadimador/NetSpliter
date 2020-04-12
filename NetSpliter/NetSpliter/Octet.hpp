@@ -32,13 +32,17 @@ public :
 	/// valeur : la valeur de remplacement du bit
 	/// [example : setBit(0,1) : met la valeur du bit le plus faible à 1]
 	////////////////////////////////////
-	void setBit(int index, bool valeur);
-
+	//void setBit(int index, bool valeur);
 
 	/// Met tous les bits à 1 du masque à 1 dans l'octet
 	/// mask : le mask sous forme de int (192 = 1100 0000)
 	///////////////////////////
 	void setMasqueOR(int mask);
+
+	/// Met tous les bits à 1 du masque à 0 dans l'octet (fait l'inverse de la méthodes "setMasqueInverseOR")
+	/// mask : le masque sous forme de int (192 = 1100 0000)
+	//////////////////////////////////
+	void setMasqueInverseOR(int mask);
 
 	/// renvoie une visualisation en string de l'octet
 	///////////////////////
