@@ -21,6 +21,11 @@ bool Octet::getInverseBit(int i)
     return ((this->octet >> i) & 1);
 }
 
+void Octet::setOctet(char octet)
+{
+    this->octet = octet;
+}
+
 std::string Octet::toString()
 {
     std::string s = "";

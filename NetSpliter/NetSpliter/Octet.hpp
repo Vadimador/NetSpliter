@@ -23,6 +23,10 @@ public :
 	/////////////////////
 	bool getInverseBit(int i);
 
+	/// change l'octet
+	//////////////////////////
+	void setOctet(char octet);
+
 	/// renvoie une visualisation en string de l'octet
 	///////////////////////
 	std::string toString();
