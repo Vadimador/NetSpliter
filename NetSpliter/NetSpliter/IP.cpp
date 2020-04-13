@@ -71,6 +71,13 @@ Octet* IP::getOctet(int pos)
 	return &adresse_ip[pos];
 }
 
+bool IP::getBit(int pos)
+{
+	int pos_byte = pos / 8;
+	int bit_restant = pos % 8;
+	return adresse_ip[pos_byte].getBit(bit_restant);
+}
+
 
 std::string IP::toString()
 {

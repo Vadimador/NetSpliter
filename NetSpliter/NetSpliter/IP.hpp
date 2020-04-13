@@ -23,6 +23,8 @@ public:
 	
 	int getBitReseau();
 
+	bool getBit(int pos);
+
 	std::string toString();
 
 	//~IP();
