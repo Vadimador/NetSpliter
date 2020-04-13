@@ -3,6 +3,8 @@
 
 class See : public Commande
 {
+private :
+	bool isMasqueSousRéseau(IP& i);
 public :
 	/// ip : l'adresse du réseau
 	/// argc : le nombre d'arguments
