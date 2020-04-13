@@ -75,7 +75,7 @@ bool IP::getBit(int pos)
 {
 	int pos_byte = pos / 8;
 	int bit_restant = pos % 8;
-	return adresse_ip[pos_byte].getBit(bit_restant);
+	return adresse_ip[3-pos_byte].getBit(bit_restant);
 }
 
 
