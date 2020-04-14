@@ -70,6 +70,8 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 		std::cout << "adresse IP: " << ip->toString() << "\n";
 		std::cout << "nouveau masque: " << mask->toString() << '/' << nb_bit_reseau + nb_bit_sous_mask <<  "\n";
 
+		delete mask;
+
 		int nb_byte_sous_reseau = (nb_bit_sous_mask / 8);
 		int nb_bit_restant = (nb_bit_sous_mask % 8);
 
@@ -87,7 +89,8 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 		IP* sous_reseau = IP::isAdresse("0.0.0.0");
 		for (size_t j = 0; j < 4; j++)
 		{
-			if (mask_no_modifier.getOctet(j)->toString().compare("11111111") == 0) {
+			if (mask_no_modifier.getOctet(j)->toString().compare("11111111") == 0) 
+			{
 				sous_reseau->getOctet(j)->setOctet(ip->getOctet(j)->toInt());
 			}
 		}
@@ -163,7 +166,11 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 			}
 
 		}
- 		
+
+		delete bit_restant;
+
+		delete sous_reseau;
+
 	}
 	else
 	{
