@@ -1,6 +1,5 @@
 #include "Split.hpp"
 
-
 int Split::execute(IP* ip,unsigned int argc, char** argv)
 {
 	for (size_t i = 0; i < argc; i++)
@@ -14,11 +13,14 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 
 	IP *mask = getMask(premier_octet);
 
-	int nb_bit_sous_mask;
-	for (size_t i = 1; i < 24; i++)
+	IP mask_no_modifier = *mask;
+
+	int nb_bit_sous_mask = 0;
+	int nb_sous_reseau_max;
+	for (size_t i = 1; i < 25; i++)
 	{
-		int res_pow = (int)pow(2, i);
-		if (nb_sous_reseau <= res_pow)
+		nb_sous_reseau_max = (int)pow(2, i);
+		if (nb_sous_reseau <= nb_sous_reseau_max)
 		{
 			nb_bit_sous_mask = i;
 			break;
@@ -27,7 +29,7 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 
 	int nb_bit_reseau = mask->getBitReseau();
 
-	if (32 - nb_bit_reseau > nb_bit_sous_mask)
+	if (32 - nb_bit_reseau >= nb_bit_sous_mask)
 	{
 		int octet_remplir = nb_bit_sous_mask;
 
@@ -66,9 +68,102 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 		}
 
 		std::cout << "adresse IP: " << ip->toString() << "\n";
-		std::cout << "nouveau masque: " << mask->toString() << "\n";
+		std::cout << "nouveau masque: " << mask->toString() << '/' << nb_bit_reseau + nb_bit_sous_mask <<  "\n";
+
+		int nb_byte_sous_reseau = (nb_bit_sous_mask / 8);
+		int nb_bit_restant = (nb_bit_sous_mask % 8);
+
+		int last_pos_byte_sous_reseau = ((nb_bit_reseau + nb_bit_sous_mask) / 8);
+
+		if (nb_byte_sous_reseau > 0 && nb_bit_restant == 0)
+		{
+			nb_bit_restant = 8;
+
+			last_pos_byte_sous_reseau--;
+		}
+
+		
+
+		IP* sous_reseau = IP::isAdresse("0.0.0.0");
+		for (size_t j = 0; j < 4; j++)
+		{
+			if (mask_no_modifier.getOctet(j)->toString().compare("11111111") == 0) {
+				sous_reseau->getOctet(j)->setOctet(ip->getOctet(j)->toInt());
+			}
+		}
+
+		int nb_bit_machine = 32 - nb_bit_reseau - nb_bit_sous_mask;
+
+		int nb_bit_machine_last_byte_sous_reseau = nb_bit_machine % 8;
+
+		Octet *bit_restant = new Octet(0);
+
+		std::string byte_restant_plein = "";
+
+		for (size_t i = 0; i < 8; i++)
+		{
+			if (8 - nb_bit_restant - 1 == i)
+			{
+				byte_restant_plein += "1";
+			}
+			else
+			{
+				byte_restant_plein += "0";
+			}
+		}
 
 
+		for (size_t i = 0; i < nb_sous_reseau_max; i++)
+		{
+			std::cout << sous_reseau->toString() << "  :  ";
+
+			for (size_t i = 0; i < nb_bit_machine; i++)
+			{
+				int pos_byte = i / 8;
+				int bit_restant = i % 8;
+				sous_reseau->getOctet(3 - pos_byte)->setBit(bit_restant,1);
+			}
+
+			std::cout<< sous_reseau->toString() << "\n";
+
+			for (size_t i = 0; i < nb_bit_machine; i++)
+			{
+				int pos_byte = i / 8;
+				int bit_restant = i % 8;
+				sous_reseau->getOctet(3 - pos_byte)->setBit(bit_restant, 0);
+			}
+
+			bit_restant->setOctet(bit_restant->toInt() + 1);
+
+			if (bit_restant->toString().compare(byte_restant_plein) == 0)
+			{
+				int a = sous_reseau->getOctet(last_pos_byte_sous_reseau - 1)->toInt() + 1;
+				sous_reseau->getOctet(last_pos_byte_sous_reseau - 1)->setOctet(a);
+
+				if (a == 256)
+				{
+					a = 0;
+					sous_reseau->getOctet(last_pos_byte_sous_reseau - 1)->setOctet(0);
+
+					sous_reseau->getOctet(last_pos_byte_sous_reseau - 2)->setOctet(sous_reseau->getOctet(last_pos_byte_sous_reseau - 2)->toInt() + 1);
+				}
+
+				bit_restant->setOctet(0);
+
+				for (size_t i = 0; i < nb_bit_restant; i++)
+				{
+					sous_reseau->getOctet(last_pos_byte_sous_reseau)->setBit(nb_bit_machine_last_byte_sous_reseau + i, 0);
+				}
+	
+			}
+
+			for (size_t i = 0; i < nb_bit_restant; i++)
+			{
+				sous_reseau->getOctet(last_pos_byte_sous_reseau)->setBit(nb_bit_machine_last_byte_sous_reseau + i, bit_restant->getBit(i));
+			}
+
+		}
+ 		
 	}
 	else
 	{
