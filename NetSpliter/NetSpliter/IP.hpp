@@ -17,6 +17,7 @@ public:
 	//--Setteur
 
 	//--Methode
+	IP();
 	IP(int adresse_ip[NB_OCTET_IPVP4]);
 
 	static IP* isAdresse(std::string adresse);
