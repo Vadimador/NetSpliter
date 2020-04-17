@@ -18,16 +18,16 @@ IP* IP::isAdresse(string adresse)
 		size_t coor = adresse.find('.');
 
 		 if (((i >= 3) && !(coor > 12 || coor < 0)) || (!(i >= 3) && (coor > 12 || coor < 0)))
-		{
+		{ // verifie que le string possede bien 3 '.'
 			return nullptr;
 		}
 
 		try
-		{
+		{ // verifie que le contenu est bien un nombre
 			int verif = stoi(adresse.substr(0,coor));
 
 			if (verif > 255) 
-			{
+			{ 
 				return nullptr;
 			}
 			
@@ -94,16 +94,4 @@ std::string IP::toString()
 
 	return res;
 }
-
-/*
-IP::~IP()
-{
-
-	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)
-	{
-		delete[] this->mask[i];
-	}
-	delete[] this->mask;
-}
-*/
 
