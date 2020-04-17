@@ -2,6 +2,14 @@
 #include "Octet.hpp"
 
 using namespace std;
+IP::IP()
+{
+	this->adresse_ip[0] = Octet(0);
+	this->adresse_ip[1] = Octet(0);
+	this->adresse_ip[2] = Octet(0);
+	this->adresse_ip[3] = Octet(0);
+}
+
 IP::IP(int tab[NB_OCTET_IPVP4])
 {
 	for (size_t i = 0; i < NB_OCTET_IPVP4; i++)

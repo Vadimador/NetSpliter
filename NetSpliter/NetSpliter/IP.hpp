@@ -13,30 +13,29 @@ private:
 public:
 	//--Getteur
 
-	/// revoie le byte précis 
-	/// pos = 0 est le byte le plus à gauche 
-	/// pos = 3 est le byte le plus à droite
+	/// revoie le byte prï¿½cis 
+	/// pos = 0 est le byte le plus ï¿½ gauche 
+	/// pos = 3 est le byte le plus ï¿½ droite
 	/////////////////////////
 	Octet* getOctet(int pos);
 
 	//--Setteur
 
 	//--Methode
-
-
+	IP();
 	IP(int adresse_ip[NB_OCTET_IPVP4]);
 
 	/// verifie que le string "adresse" est bien une adresse IP en decimal
 	/////////////////////////
 	static IP* isAdresse(std::string adresse);
 	
-	/// revoie le nombre de bit utilisé pour identifier le réseau
+	/// revoie le nombre de bit utilisï¿½ pour identifier le rï¿½seau
 	/////////////////////////
 	int getBitReseau();
 
-	/// revoie un bit précis
-	/// pos = 0 est le bit le plus à droite
-	/// pos = 31 est le bit plus à gauche
+	/// revoie un bit prï¿½cis
+	/// pos = 0 est le bit le plus ï¿½ droite
+	/// pos = 31 est le bit plus ï¿½ gauche
 	/////////////////////////
 	bool getBit(int pos);
 
