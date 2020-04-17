@@ -126,7 +126,7 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 
 			int nb_sous_reseau_voulu;
 
-			if (argc == 3)
+			if (argc == 3 && (atoi(argv[2]) <= nb_sous_reseau_max))
 			{
 				nb_sous_reseau_voulu = atoi(argv[2]);
 			}
@@ -236,5 +236,14 @@ IP* Split::getMask(std::string premiere_nb_adresse)
 
 void Split::help()
 {
-	std::cout << "pas encore inistialise";
+	// è = 212  é = 202
+	std::string s = "";
+	s += "Utilisation de split : \n";
+	s += " spli <param1> <param2> <option> <param 3>\n";
+	s += " - <param1> l'adresse du r\202seau en d\202cimal par exemple \"10.10.10.10\" \n";
+	s += " - <param2> le nombre sous r\202seau que l'on voudrait avoir \n";
+	s += " - <option> il existe que l'option -detail \n \n";
+	s += " -detail permet d'afficher l'adresse IP et broadcast de chaque sous-r\202seau \n";
+	s += " -detail peut utiliser <param 3> est un nombre permettant d'afficher une nombre limite de sous-r\202seau \n";
+	std::cout << "\n" << s << "\n";
 }
