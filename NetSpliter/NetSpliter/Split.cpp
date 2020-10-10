@@ -2,10 +2,10 @@
 
 int Split::execute(IP* ip,unsigned int argc, char** argv)
 {
-	for (size_t i = 0; i < argc; i++)
+	/*for (size_t i = 0; i < argc; i++) // pas besoin de ça normalement
 	{
 		std::cout << argv[i] << "\n";
-	}
+	}*/
 
 	int nb_sous_reseau = atoi(argv[0]); //convertir char en int
 
@@ -135,15 +135,15 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 				nb_sous_reseau_voulu = nb_sous_reseau_max;
 			}
 
-			std::cout << "----------------------------------" << "\n";
-			std::cout << "|@ reseau       ||@ broadcast    |" << "\n";
-			std::cout << "----------------------------------" << "\n";
+			std::cout << "------------------------------------" << "\n";
+			std::cout << "|    @ reseau    ||  @ broadcast   |" << "\n";
+			std::cout << "------------------------------------" << "\n";
 
 			for (size_t i = 0; i < nb_sous_reseau_voulu; i++)
 			{
 				std::cout << "|";
 				std::cout.width(15);
-				std::cout << sous_reseau->toString() << "||";
+				std::cout << sous_reseau->toString() << " ||";
 
 				for (size_t i = 0; i < nb_bit_machine; i++)
 				{
@@ -153,8 +153,8 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 				}
 
 				std::cout.width(15);
-				std::cout << sous_reseau->toString() << '|' << "\n";
-				std::cout << "----------------------------------" << "\n";;
+				std::cout << sous_reseau->toString() << " | " << i + 1 << "\n";
+				std::cout << "------------------------------------" << "\n";;
 
 				for (size_t i = 0; i < nb_bit_machine; i++)
 				{
@@ -204,6 +204,8 @@ int Split::execute(IP* ip,unsigned int argc, char** argv)
 	else
 	{
 		std::cout << "Cette adresse ip ne peut pas avoir le nombre de sous reseau voulu";
+		std::cout << "/n";
+		this->help();
 		return -1;
 	}
 
@@ -239,10 +241,10 @@ void Split::help()
 	// è = 212  é = 202
 	std::string s = "";
 	s += "Utilisation de split : \n";
-	s += " spli <param1> <param2> <option> <param 3>\n";
-	s += " - <param1> l'adresse du r\202seau en d\202cimal par exemple \"10.10.10.10\" \n";
-	s += " - <param2> le nombre sous r\202seau que l'on voudrait avoir \n";
-	s += " - <option> il existe que l'option -detail \n \n";
+	s += "NetSpliter.exe <@adresse> split <param2> <option> <param 3>\n";
+	s += " - <@adresse> l'adresse du r\202seau en d\202cimal par exemple \"10.10.10.10\" \n";
+	s += " - <param2> le nombre sous-r\202seau que l'on voudrait avoir \n";
+	s += " - <option> il existe uniquement l'option -detail \n \n";
 	s += " -detail permet d'afficher l'adresse IP et broadcast de chaque sous-r\202seau \n";
 	s += " -detail peut utiliser <param 3> est un nombre permettant d'afficher une nombre limite de sous-r\202seau \n";
 	std::cout << "\n" << s << "\n";
